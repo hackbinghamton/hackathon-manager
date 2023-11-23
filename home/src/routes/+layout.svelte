@@ -17,3 +17,5 @@
 	// - Vite injects the processed CSS into a new `<style>` in this component.
 	import '../app.pcss';
 </script>
+
+<slot />
