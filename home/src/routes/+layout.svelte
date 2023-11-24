@@ -20,19 +20,19 @@
 	import '../app.pcss';
 </script>
 
-<Navbar let:NavContainer>
+<Navbar let:NavContainer class="!px-0 pt-0">
 	<!-- TODO: remove horizontal margins -->
-	<NavContainer class="border px-5 py-3 rounded-lg bg-white dark:bg-gray-600">
-		<NavBrand>
+	<NavContainer class="mx-0 sm:border sm:px-5 py-3 rounded-lg bg-white dark:bg-gray-600 ">
+		<NavBrand href="/">
 			<!-- TODO: Add HackBU logo here. -->
-			<a href="/" class="whitespace-nowrap text-2xl font-semibold"> HackBU Home</a>
+			<span class="whitespace-nowrap text-2xl font-semibold"> HackBU Home</span>
 		</NavBrand>
 
 		<!-- TODO: find out why these are not being sorted -->
 		<a
 			href="https://hackbu.org"
 			class="text-sm text-gray-700 hover:text-primary-700 dark:text-gray-400 font-medium dark:hover:text-white dark:hover:bg-gray-700"
-			>Back to HackBU Blog</a
+			>Blog</a
 		>
 	</NavContainer>
 </Navbar>

@@ -8,5 +8,9 @@
 @tailwind utilities;
 
 body {
-	@apply mx-auto max-w-3xl;
+	/*
+	 * At the small breakpoint, add more horizontal padding and switch to different navbar.
+	 * At the large breakpoint, cut off the width of the page.
+	 */
+	@apply mx-auto max-w-screen-lg px-4 sm:p-6;
 }
