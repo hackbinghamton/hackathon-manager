@@ -18,12 +18,14 @@
 	// - PostCSS preprocesses the file.
 	// - Vite injects the processed CSS into a new `<style>` in this component.
 	import '../app.pcss';
+
+	import logo_icon from '$lib/assets/logo_icon.png';
 </script>
 
 <!-- We need to make this transparent since a child has a rounded border. -->
 <Navbar fluid={true} class="mb-2.5 sm:rounded-lg sm:border sm:px-5">
 	<NavBrand href="/">
-		<!-- TODO: Add HackBU logo here. -->
+		<img src={logo_icon} class="-my-2 mr-1 h-12 sm:-my-1 sm:mr-3 sm:h-14" alt="HackBU Logo" />
 		<span class="whitespace-nowrap text-2xl font-semibold"> HackBU Home</span>
 	</NavBrand>
 
