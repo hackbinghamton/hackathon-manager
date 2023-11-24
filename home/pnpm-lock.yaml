@@ -45,14 +45,14 @@ devDependencies:
     specifier: ^4.0.1
     version: 4.0.2(postcss@8.4.31)
   prettier:
-    specifier: ^3.0.0
-    version: 3.0.0
+    specifier: ^3.1.0
+    version: 3.1.0
   prettier-plugin-svelte:
     specifier: ^3.1.2
-    version: 3.1.2(prettier@3.0.0)(svelte@4.2.3)
+    version: 3.1.2(prettier@3.1.0)(svelte@4.2.3)
   prettier-plugin-tailwindcss:
-    specifier: ^0.4.1
-    version: 0.4.1(prettier-plugin-svelte@3.1.2)(prettier@3.0.0)
+    specifier: ^0.5.7
+    version: 0.5.7(prettier-plugin-svelte@3.1.2)(prettier@3.1.0)
   svelte:
     specifier: ^4.0.5
     version: 4.2.3
@@ -1829,26 +1829,26 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-svelte@3.1.2(prettier@3.0.0)(svelte@4.2.3):
+  /prettier-plugin-svelte@3.1.2(prettier@3.1.0)(svelte@4.2.3):
     resolution: {integrity: sha512-7xfMZtwgAWHMT0iZc8jN4o65zgbAQ3+O32V6W7pXrqNvKnHnkoyQCGCbKeUyXKZLbYE0YhFRnamfxfkEGxm8qA==}
     peerDependencies:
       prettier: ^3.0.0
       svelte: ^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0
     dependencies:
-      prettier: 3.0.0
+      prettier: 3.1.0
       svelte: 4.2.3
     dev: true
 
-  /prettier-plugin-tailwindcss@0.4.1(prettier-plugin-svelte@3.1.2)(prettier@3.0.0):
-    resolution: {integrity: sha512-hwn2EiJmv8M+AW4YDkbjJ6HlZCTzLyz1QlySn9sMuKV/Px0fjwldlB7tol8GzdgqtkdPtzT3iJ4UzdnYXP25Ag==}
-    engines: {node: '>=12.17.0'}
+  /prettier-plugin-tailwindcss@0.5.7(prettier-plugin-svelte@3.1.2)(prettier@3.1.0):
+    resolution: {integrity: sha512-4v6uESAgwCni6YF6DwJlRaDjg9Z+al5zM4JfngcazMy4WEf/XkPS5TEQjbD+DZ5iNuG6RrKQLa/HuX2SYzC3kQ==}
+    engines: {node: '>=14.21.3'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
       '@prettier/plugin-pug': '*'
       '@shopify/prettier-plugin-liquid': '*'
       '@shufo/prettier-plugin-blade': '*'
       '@trivago/prettier-plugin-sort-imports': '*'
-      prettier: ^2.2 || ^3.0
+      prettier: ^3.0
       prettier-plugin-astro: '*'
       prettier-plugin-css-order: '*'
       prettier-plugin-import-sort: '*'
@@ -1891,12 +1891,12 @@ packages:
       prettier-plugin-twig-melody:
         optional: true
     dependencies:
-      prettier: 3.0.0
-      prettier-plugin-svelte: 3.1.2(prettier@3.0.0)(svelte@4.2.3)
+      prettier: 3.1.0
+      prettier-plugin-svelte: 3.1.2(prettier@3.1.0)(svelte@4.2.3)
     dev: true
 
-  /prettier@3.0.0:
-    resolution: {integrity: sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==}
+  /prettier@3.1.0:
+    resolution: {integrity: sha512-TQLvXjq5IAibjh8EpBIkNKxO749UEWABoiIZehEPiY4GNpVdhaFKqSTu+QrlU6D2dPAfubRmtJTi4K4YkQ5eXw==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
