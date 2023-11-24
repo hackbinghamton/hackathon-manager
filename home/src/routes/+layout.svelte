@@ -39,4 +39,6 @@
 	</div>
 </Navbar>
 
-<slot />
+<main class="px-6 sm:px-[revert]">
+	<slot />
+</main>
