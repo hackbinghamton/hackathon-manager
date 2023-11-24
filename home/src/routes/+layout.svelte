@@ -23,7 +23,10 @@
 </script>
 
 <!-- We need to make this transparent since a child has a rounded border. -->
-<Navbar fluid={true} class="mb-2.5 sm:rounded-lg sm:border sm:px-5">
+<Navbar
+	fluid={true}
+	class="mb-2.5 border-b border-gray-300 dark:border-gray-600 sm:rounded-lg sm:border"
+>
 	<NavBrand href="/">
 		<img src={logo_icon} class="-my-2 mr-1 h-12 sm:-my-1 sm:mr-3 sm:h-14" alt="HackBU Logo" />
 		<span class="whitespace-nowrap text-2xl font-semibold"> HackBU Home</span>
