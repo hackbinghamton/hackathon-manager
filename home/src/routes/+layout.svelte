@@ -29,7 +29,7 @@
 		<span class="whitespace-nowrap text-2xl font-semibold"> HackBU Home</span>
 	</NavBrand>
 
-	<div class="flex flex-wrap items-center justify-between gap-x-5">
+	<div class="flex flex-wrap items-center justify-between gap-x-3">
 		<a
 			href="https://hackbu.org"
 			class="hover:text-primary-700 text-md font-medium text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
