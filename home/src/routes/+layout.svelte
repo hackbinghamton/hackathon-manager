@@ -33,8 +33,10 @@
 		<A
 			href="https://hackbu.org"
 			color="hover:text-primary-700 text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-			class="text-md font-medium hover:no-underline">Blog</A
+			aClass="font-medium"
 		>
+			Blog
+		</A>
 		<Avatar src="https://pbs.twimg.com/profile_images/1589351611398250497/ioox_g1x_400x400.jpg" />
 	</div>
 </Navbar>
