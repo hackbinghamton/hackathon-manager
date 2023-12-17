@@ -26,7 +26,7 @@
 <Navbar fluid border rounded class="mb-4 border-gray-300 dark:border-gray-600">
 	<NavBrand href="/">
 		<img src={logo_icon} class="-my-2 mr-1 h-12 sm:-my-1 sm:mr-3 sm:h-14" alt="HackBU Logo" />
-		<span class="whitespace-nowrap text-2xl font-semibold"> HackBU Home</span>
+		<span class="whitespace-nowrap text-2xl font-semibold">HackBU Home</span>
 	</NavBrand>
 
 	<div class="flex flex-wrap items-center justify-between gap-x-3">
