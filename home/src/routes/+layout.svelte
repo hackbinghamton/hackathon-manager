@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { NavBrand, Navbar, Avatar } from 'flowbite-svelte';
+	import { NavBrand, Navbar, Avatar, A } from 'flowbite-svelte';
 
 	// This file is a Svelte component [1], which accomodates script, markup, and style sections.
 	// We configured Vite to use the SvelteKit plugin [2], which understands Svelte component syntax.
@@ -30,10 +30,10 @@
 	</NavBrand>
 
 	<div class="flex flex-wrap items-center justify-between gap-x-3">
-		<a
+		<A
 			href="https://hackbu.org"
-			class="hover:text-primary-700 text-md font-medium text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-			>Blog</a
+			color="hover:text-primary-700 text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+			class="text-md font-medium hover:no-underline">Blog</A
 		>
 		<Avatar src="https://pbs.twimg.com/profile_images/1589351611398250497/ioox_g1x_400x400.jpg" />
 	</div>
