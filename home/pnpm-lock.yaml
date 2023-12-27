@@ -59,6 +59,12 @@ devDependencies:
   svelte-check:
     specifier: ^3.4.3
     version: 3.6.0(postcss-load-config@4.0.2)(postcss@8.4.31)(svelte@4.2.3)
+  sveltekit-flash-message:
+    specifier: ^2.3.0
+    version: 2.3.0(@sveltejs/kit@1.27.5)(svelte@4.2.3)
+  sveltekit-superforms:
+    specifier: ^1.10.2
+    version: 1.10.2(@sveltejs/kit@1.27.5)(svelte@4.2.3)(zod@3.22.4)
   tailwindcss:
     specifier: ^3.3.2
     version: 3.3.5
@@ -71,6 +77,9 @@ devDependencies:
   vite:
     specifier: ^4.4.2
     version: 4.5.0
+  zod:
+    specifier: ^3.22.4
+    version: 3.22.4
 
 packages:
 
@@ -2209,6 +2218,28 @@ packages:
       periscopic: 3.1.0
     dev: true
 
+  /sveltekit-flash-message@2.3.0(@sveltejs/kit@1.27.5)(svelte@4.2.3):
+    resolution: {integrity: sha512-PJgOtKfJ02sNBNp3iELSJ/TlJGCxkLtqPVSlSvp16KFueJrtiMDjFDliPkYJAGJ3EJHcoVac6aF1moCUOjS5Vw==}
+    peerDependencies:
+      '@sveltejs/kit': 1.x || 2.x
+      svelte: 3.x || 4.x
+    dependencies:
+      '@sveltejs/kit': 1.27.5(svelte@4.2.3)(vite@4.5.0)
+      svelte: 4.2.3
+    dev: true
+
+  /sveltekit-superforms@1.10.2(@sveltejs/kit@1.27.5)(svelte@4.2.3)(zod@3.22.4):
+    resolution: {integrity: sha512-eZxLi4oEQjxMQlRD6acNZL8E7vwEnsVATB3VkZuVEUi925TXli9EkrP3fGZudzBbDC5D7Nx6D7UQ2Mzfhl0r8w==}
+    peerDependencies:
+      '@sveltejs/kit': 1.x
+      svelte: 3.x || 4.x
+      zod: 3.x
+    dependencies:
+      '@sveltejs/kit': 1.27.5(svelte@4.2.3)(vite@4.5.0)
+      svelte: 4.2.3
+      zod: 3.22.4
+    dev: true
+
   /svg.draggable.js@2.2.2:
     resolution: {integrity: sha512-JzNHBc2fLQMzYCZ90KZHN2ohXL0BQJGQimK1kGk6AvSeibuKcIdDX9Kr0dT9+UJ5O8nYA0RB839Lhvk4CY4MZw==}
     engines: {node: '>= 0.8.0'}
@@ -2474,4 +2505,8 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  /zod@3.22.4:
+    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: true
