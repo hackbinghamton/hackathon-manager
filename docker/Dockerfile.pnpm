@@ -1,0 +1,11 @@
+# This Dockerfile builds an image with pnpm for development.
+
+# Consider keeping this in sync with the other distro choices.
+FROM node:21.5.0-alpine3.19
+
+ENV PNPM_HOME="/opt/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+
+USER node
+WORKDIR /home/node/app

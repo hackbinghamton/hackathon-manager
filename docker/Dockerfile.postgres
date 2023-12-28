@@ -1,0 +1,7 @@
+# This Dockerfile customizes the Postgres image.
+
+# Consider keeping this in sync with the other distro choices.
+FROM postgres:16.1-alpine3.19
+
+# Add our custom init script.
+COPY init-db.sh /docker-entrypoint-initdb.d/
