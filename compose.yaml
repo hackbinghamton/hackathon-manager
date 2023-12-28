@@ -1,7 +1,7 @@
 services:
   db:
     # We aren't scaling these up, so give them prettier names.
-    container_name: db
+    container_name: "db"
     build:
       context: "./docker"
       dockerfile: "Dockerfile.postgres"
@@ -13,9 +13,9 @@ services:
       - "db_data:/var/lib/postgresql/data"
 
   dbadmin:
-    container_name: dbadmin
+    container_name: "dbadmin"
     depends_on:
-      - db
+      - "db"
     # This used to (<= 4.8.0) be based on Alpine, but then PHP 7.4 was deprecated,
     # and Adminer has gone pretty unmaintained. So we settle for this image based
     # on Debian Bullseye.
