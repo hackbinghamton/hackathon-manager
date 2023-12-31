@@ -9,6 +9,7 @@
 	export let data;
 
 	const { form, enhance, errors, allErrors, constraints, message } = superForm(data.form, {
+		// Catch errors so that we don't get whisked away from the form to an error page.
 		onError({ result }) {
 			$message = { type: 'error', text: result.error.message };
 		}
