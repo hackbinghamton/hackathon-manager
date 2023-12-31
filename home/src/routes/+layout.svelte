@@ -1,4 +1,13 @@
 <script lang="ts">
+	import {
+		NavBrand,
+		Navbar,
+		Avatar,
+		A,
+		Dropdown,
+		DropdownHeader,
+		DropdownItem
+	} from 'flowbite-svelte';
 	import MyAlert from '$lib/components/MyAlert.svelte';
 	import { getFlash } from 'sveltekit-flash-message';
 	import { page } from '$app/stores';
@@ -23,6 +32,9 @@
 	import '../app.pcss';
 
 	import logo_icon from '$lib/assets/logo_icon.png';
+	import { enhance } from '$app/forms';
+
+	let dropdownOpen = false;
 </script>
 
 <!-- We need to make this transparent since a child has a rounded border. -->
@@ -40,7 +52,38 @@
 		>
 			Blog
 		</A>
-		<Avatar src="https://pbs.twimg.com/profile_images/1589351611398250497/ioox_g1x_400x400.jpg" />
+		<!--
+			As far as Lucia is concerned, if we have authenticated with Google, then
+			we have a perfectly valid user. For our purposes, though, sign-up
+			is not complete until the user has completed the form. Therefore, we
+			refrain from showing the avatar until *we* say sign-up is complete.
+		 -->
+		{#if $page.data?.user?.isSignedUp}
+			{@const user = $page.data.user}
+			<!-- This div ensures that the Dropdown doesn't count as its own flex child. -->
+			<div>
+				<Avatar
+					id="avatar-menu"
+					src={user.avatarUrl}
+					class="hover:opacity-75 {dropdownOpen ? 'brightness-75' : ''}"
+				/>
+				<Dropdown
+					triggeredBy="#avatar-menu"
+					placement="bottom-end"
+					border
+					color="primary"
+					bind:open={dropdownOpen}
+				>
+					<DropdownHeader>
+						<span class="block text-sm">{user.name}</span>
+						<span class="block truncate text-sm font-medium">{user.email}</span>
+					</DropdownHeader>
+					<form method="post" action="/?/logout" use:enhance>
+						<DropdownItem type="submit">Sign out</DropdownItem>
+					</form>
+				</Dropdown>
+			</div>
+		{/if}
 	</div>
 </Navbar>
 
