@@ -1,12 +1,8 @@
-import { SvelteKitAuth } from '@auth/sveltekit';
-import { DrizzleAdapter } from '@auth/drizzle-adapter';
-import Google from '@auth/core/providers/google';
-import { env } from '$env/dynamic/private';
+import { auth } from '$lib/server/lucia';
 
-import db from '$lib/db';
+export const handle = async ({ event, resolve }) => {
+	event.locals.authRequest = auth.handleRequest(event);
 
-// See: https://authjs.dev/getting-started/providers/oauth-tutorial?frameworks=sveltekit#create-server-hook
-export const handle = SvelteKitAuth({
-	adapter: DrizzleAdapter(db),
-	providers: [Google({ clientId: env.GOOGLE_CLIENT_ID, clientSecret: env.GOOGLE_CLIENT_SECRET })]
-});
+	const response = await resolve(event);
+	return response;
+};
