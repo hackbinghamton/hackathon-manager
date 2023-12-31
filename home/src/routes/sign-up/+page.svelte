@@ -34,17 +34,37 @@
 </header>
 
 <main>
-	<form method="POST" use:enhance>
-		<div class="mb-4">
-			<Label for="email" class="mb-2">B-mail</Label>
-			<Input type="email" id="email" readonly value="hello@example.com" />
+	<form method="POST" use:enhance class="mt-2">
+		<div class="mb-2 grid gap-2 sm:grid-cols-2 sm:gap-6">
+			<div>
+				<Label for="first-name" class="mb-2">First Name</Label>
+				<Input
+					type="text"
+					id="first-name"
+					readonly
+					class={inputClass}
+					value={data.user?.firstName}
+				/>
+			</div>
+			<div>
+				<Label for="last-name" class="mb-2">Last Name</Label>
+				<Input type="text" id="last-name" readonly class={inputClass} value={data.user?.lastName} />
+			</div>
 		</div>
 
-		<div class="mb-4">
+		<div class="mb-2">
+			<Label for="email" class="mb-2">B-mail</Label>
+			<!-- In practice, the server script for this page ensures
+				 that the user is not null. -->
+			<Input type="email" id="email" readonly class={inputClass} value={data.user?.email} />
+		</div>
+
+		<div class="mb-2">
 			<Label for="name" class="mb-2">meow</Label>
 			<Input
 				id="name"
 				name="name"
+				class={inputClass}
 				aria-invalid={$errors.name ? 'true' : undefined}
 				bind:value={$form.name}
 				{...$constraints.name}
@@ -52,7 +72,7 @@
 			{#if $errors.name}<Helper color="red" class="mt-2 font-medium">{$errors.name}</Helper>{/if}
 		</div>
 
-		<Button type="submit" class="mb-4">Submit</Button>
+		<Button type="submit" class="mb-4 mt-3">Submit</Button>
 		{#if $message?.type == 'error'}
 			{@const text = $allErrors.length
 				? `Please fix the above issue${$allErrors.length > 1 ? 's' : ''} and try again.`
