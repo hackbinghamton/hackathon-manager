@@ -14,6 +14,18 @@
 			$message = { type: 'error', text: result.error.message };
 		}
 	});
+
+	// In this form, we have some inputs taken from Google that we don't want
+	// the user to edit. Although these are not literally sent when the form is
+	// submitted [1], from the user's perspective it might as well be. It's part of
+	// the information that is going into their new account which we are asking
+	// for them to review.
+	//
+	// Flowbite Svelte doesn't have any default styling for `readonly`, so here we
+	// copy some of the styling from `disabled`.
+	//
+	// [1] relevant to: https://stackoverflow.com/a/7730719/5719930.
+	const inputClass = 'read-only:cursor-not-allowed';
 </script>
 
 <header>
