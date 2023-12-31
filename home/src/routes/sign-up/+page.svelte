@@ -20,8 +20,6 @@
 	<P>We need a little more info to complete your HackBU club registration.</P>
 </header>
 
-<Hr classHr="mx-auto my-2 sm:my-4 w-36 rounded bg-gray-700 h-1" />
-
 <main>
 	<form method="POST" use:enhance>
 		<div class="mb-4">
