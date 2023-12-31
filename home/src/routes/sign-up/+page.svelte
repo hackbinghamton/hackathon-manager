@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Label, Input, Helper, Hr, P, Heading, Button, Alert, A } from 'flowbite-svelte';
-	import { ExclamationCircleSolid } from 'flowbite-svelte-icons';
+	import { Label, Input, Helper, P, Button } from 'flowbite-svelte';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { dev } from '$app/environment';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
+	import MyAlert from '$lib/components/MyAlert.svelte';
 
 	export let data;
 
@@ -44,18 +44,10 @@
 
 		<Button type="submit" class="mb-4">Submit</Button>
 		{#if $message?.type == 'error'}
-			<Alert border color="red" class="mb-4">
-				<ExclamationCircleSolid slot="icon" class="h-4 w-4" />
-				{#if $allErrors.length}
-					Please fix the above issue{$allErrors.length > 1 ? 's' : ''} and try again.
-				{:else if $message.text == 'Internal Error'}
-					Something went wrong on our end. If this persists, please reach out to <A
-						href="mailto=hello@hackbu.org">hello@hackbu.org</A
-					>.
-				{:else}
-					{$message.text}
-				{/if}
-			</Alert>
+			{@const text = $allErrors.length
+				? `Please fix the above issue${$allErrors.length > 1 ? 's' : ''} and try again.`
+				: $message.text}
+			<MyAlert type="error" message={text} />
 		{/if}
 		<SuperDebug data={$form} display={dev} />
 	</form>

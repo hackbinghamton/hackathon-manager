@@ -1,8 +1,5 @@
 <script lang="ts">
-	import { NavBrand, Navbar, Avatar, A, Alert } from 'flowbite-svelte';
-	import { InfoCircleSolid } from 'flowbite-svelte-icons';
-	import { ExclamationCircleSolid } from 'flowbite-svelte-icons';
-
+	import MyAlert from '$lib/components/MyAlert.svelte';
 	import { getFlash } from 'sveltekit-flash-message';
 	import { page } from '$app/stores';
 	const flash = getFlash(page);
@@ -49,12 +46,9 @@
 
 <div class="px-6 sm:px-[revert]">
 	{#if $flash}
-		{@const color = $flash.type == 'success' ? 'green' : 'red'}
-		{@const icon = $flash.type == 'success' ? InfoCircleSolid : ExclamationCircleSolid}
-		<Alert border dismissable {color} class="sticky top-3 mb-2 sm:mb-3">
-			<svelte:component this={icon} slot="icon" class="h-4 w-4" />
+		<MyAlert type={$flash.type} sticky>
 			{$flash.text}
-		</Alert>
+		</MyAlert>
 	{/if}
 	<slot />
 </div>
