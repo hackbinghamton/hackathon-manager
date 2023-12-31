@@ -31,7 +31,7 @@
 	// - Vite injects the processed CSS into a new `<style>` in this component.
 	import '../app.pcss';
 
-	import logo_icon from '$lib/assets/logo_icon.png';
+	import logoIcon from '$lib/assets/logo_icon.png';
 	import { enhance } from '$app/forms';
 
 	let dropdownOpen = false;
@@ -40,7 +40,7 @@
 <!-- We need to make this transparent since a child has a rounded border. -->
 <Navbar fluid border rounded class="mb-3 border-gray-300 dark:border-gray-600">
 	<NavBrand href="/">
-		<img src={logo_icon} class="-my-2 mr-1 h-12 sm:-my-1 sm:mr-3 sm:h-14" alt="HackBU Logo" />
+		<img src={logoIcon} class="-my-2 me-1 h-12 sm:-my-1 sm:me-3 sm:h-14" alt="HackBU Logo" />
 		<span class="whitespace-nowrap text-2xl font-semibold">HackBU Home</span>
 	</NavBrand>
 
