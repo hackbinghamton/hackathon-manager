@@ -32,6 +32,7 @@ services:
       context: "./docker"
       dockerfile: "Dockerfile.pnpm"
     command: ["pnpm", "run", "dev", "--host"]
+    env_file: ".env"
     volumes:
       - "./home:/home/node/app"
     ports:
