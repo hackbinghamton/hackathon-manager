@@ -4,6 +4,7 @@
 	import { dev } from '$app/environment';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import MyAlert from '$lib/components/MyAlert.svelte';
+	import MyHeading from '$lib/components/MyHeading.svelte';
 
 	export let data;
 
@@ -15,9 +16,7 @@
 </script>
 
 <header>
-	<Heading tag="h1" customSize="text-2xl font-bold sm:text-4xl" class=" mb-2 sm:mb-4"
-		>Complete registration
-	</Heading>
+	<MyHeading tag="h1">Complete registration</MyHeading>
 	<P>We need a little more info to complete your HackBU club registration.</P>
 </header>
 
