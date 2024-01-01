@@ -1,0 +1,19 @@
+{
+	"name": "hackathon-manager",
+	"version": "0.0.1",
+	"private": true,
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^6.16.0",
+		"@typescript-eslint/parser": "^6.16.0",
+		"drizzle-kit": "^0.20.9",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^8.10.0",
+		"eslint-plugin-svelte": "^2.35.1",
+		"prettier": "^3.1.1",
+		"prettier-plugin-svelte": "^3.1.2",
+		"prettier-plugin-tailwindcss": "^0.5.10",
+		"svelte-check": "^3.6.2",
+		"tailwindcss": "^3.4.0",
+		"typescript": "^5.3.3"
+	}
+}

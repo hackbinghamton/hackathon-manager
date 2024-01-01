@@ -1,7 +1,4 @@
 .DS_Store
-# When running pnpm inside Docker, it will place the store here.
-/.pnpm-store
-node_modules
 /build
 /.svelte-kit
 /package
