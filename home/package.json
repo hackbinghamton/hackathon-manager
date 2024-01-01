@@ -45,7 +45,6 @@
 		"@lucia-auth/oauth": "^3.5.0",
 		"drizzle-orm": "0.29.1",
 		"lucia": "^2.7.6",
-		"postgres": "^3.4.3",
-		"tailwind-merge": "^2.2.0"
+		"postgres": "^3.4.3"
 	}
 }
