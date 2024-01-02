@@ -12,7 +12,7 @@ module.exports = {
 		node: true
 	},
 	overrides: [
-		// Even though this project is majority Typescript, it's implemented here
+		// Even though this project is majority TypeScript, it's implemented here
 		// as an exception so that ESLint doesn't apply TS rules to the JS configs.
 		{
 			files: ['*.ts'],
