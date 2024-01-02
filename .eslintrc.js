@@ -20,6 +20,10 @@ module.exports = {
 			plugins: ['@typescript-eslint'],
 			extends: ['plugin:@typescript-eslint/recommended']
 		},
+		// ESLint doesn't recognize these by default for some reason.
+		{
+			files: ['*.cjs']
+		},
 		{
 			files: ['*.svelte'],
 			parser: 'svelte-eslint-parser',
