@@ -1,13 +1,6 @@
 module.exports = {
 	root: true,
-	extends: [
-		'eslint:recommended',
-		'plugin:@typescript-eslint/recommended',
-		'plugin:svelte/recommended',
-		'prettier'
-	],
-	parser: '@typescript-eslint/parser',
-	plugins: ['@typescript-eslint'],
+	extends: ['eslint:recommended', 'plugin:svelte/recommended', 'prettier'],
 	parserOptions: {
 		sourceType: 'module',
 		ecmaVersion: 2020,
@@ -19,6 +12,14 @@ module.exports = {
 		node: true
 	},
 	overrides: [
+		// Even though this project is majority Typescript, it's implemented here
+		// as an exception so that ESLint doesn't apply TS rules to the JS configs.
+		{
+			files: ['*.ts'],
+			parser: '@typescript-eslint/parser',
+			plugins: ['@typescript-eslint'],
+			extends: ['plugin:@typescript-eslint/recommended']
+		},
 		{
 			files: ['*.svelte'],
 			parser: 'svelte-eslint-parser',
