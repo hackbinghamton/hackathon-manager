@@ -42,5 +42,15 @@ services:
     ports:
       - '5173:5173'
 
+  bot:
+    <<: *node
+    depends_on:
+      - 'prep'
+    container_name: 'bot'
+    working_dir: '/home/node/app/bot'
+    command: ['pnpm', 'run', 'dev']
+    ports:
+      - '5175:3000'
+
 volumes:
   db_data:
