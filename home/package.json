@@ -15,12 +15,12 @@
 	"dependencies": {
 		"@lucia-auth/adapter-postgresql": "^2.0.2",
 		"@lucia-auth/oauth": "^3.5.0",
+		"@sveltejs/adapter-node": "^2.0.2",
 		"drizzle-orm": "0.29.1",
 		"lucia": "^2.7.6",
 		"postgres": "^3.4.3"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.1.1",
 		"@sveltejs/kit": "^1.30.3",
 		"autoprefixer": "^10.4.16",
 		"flowbite": "^2.2.1",
