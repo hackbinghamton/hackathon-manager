@@ -21,28 +21,22 @@ services:
     ports:
       - '8080:8080'
 
-  prep:
+  prep: &node
     container_name: 'prep'
     depends_on:
       - 'db'
     build:
       context: './docker'
       dockerfile: 'Dockerfile.pnpm'
+    env_file: '.env'
     volumes:
       - '.:/home/node/app'
 
   home:
+    <<: *node
     container_name: 'home'
-    depends_on:
-      - 'db'
-    build:
-      context: './docker'
-      dockerfile: 'Dockerfile.pnpm'
     working_dir: '/home/node/app/home'
     command: ['pnpm', 'run', 'dev', '--host']
-    env_file: '.env'
-    volumes:
-      - '.:/home/node/app'
     ports:
       - '5173:5173'
 
