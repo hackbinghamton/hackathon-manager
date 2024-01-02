@@ -2,6 +2,10 @@
 	"name": "hackathon-manager",
 	"version": "0.0.1",
 	"private": true,
+	"scripts": {
+		"lint": "pnpm -r lint",
+		"check": "pnpm -r check"
+	},
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^6.16.0",
 		"@typescript-eslint/parser": "^6.16.0",
