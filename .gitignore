@@ -1,5 +1,13 @@
-.env*
-!.env.template
-node_modules
+# Generated
+
 # When running pnpm inside Docker, it will place the store here.
 /.pnpm-store
+node_modules
+vite.config.ts.timestamp-*
+.svelte-kit
+build
+
+# Config
+
+.env*
+!.env.template
