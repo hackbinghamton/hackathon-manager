@@ -12,7 +12,7 @@
 	const icon = type == 'success' ? InfoCircleSolid : ExclamationCircleSolid;
 </script>
 
-<Alert border dismissable={sticky} {color} class="mb-2 sm:mb-3 {sticky && 'sticky top-3'}" )}>
+<Alert border dismissable={sticky} {color} class="mb-2 sm:mb-3 {sticky && 'sticky top-3'}">
 	<svelte:component this={icon} slot="icon" class="h-4 w-4" />
 	<slot>
 		{#if message && message != 'Internal Error'}
