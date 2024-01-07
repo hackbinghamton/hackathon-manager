@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { message, superValidate } from 'sveltekit-superforms/server';
 import { redirect as redirectFlash } from 'sveltekit-flash-message/server';
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import { auth } from '$lib/server/lucia';
 import { COOKIE_KEY_DISCORD, MSG_FROM_DISCORD } from '$lib/server/discord.js';
 
@@ -20,6 +20,9 @@ export const load = async ({ parent }) => {
 	// rather than being redirected from a callback.
 	if (!user) {
 		throw error(422, ERROR_NOT_SIGNED_IN);
+	}
+	if (user.isSignedUp) {
+		throw redirect(302, '/profile');
 	}
 
 	const form = await superValidate(schema);
