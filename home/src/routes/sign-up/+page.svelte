@@ -30,7 +30,7 @@
 
 <header>
 	<MyHeading tag="h1">Complete registration</MyHeading>
-	<P>We need a little more info to complete your HackBU club registration.</P>
+	<P>We just need a little more info to setup your account:</P>
 </header>
 
 <main>
