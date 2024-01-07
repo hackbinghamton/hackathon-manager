@@ -10,9 +10,9 @@ export const load = async ({ url, cookies, locals }) => {
 		throw error(422, 'Invalid OAuth state or no authorization code.');
 	}
 	try {
-		// For googleUser details, see:
+		// For user details, see:
 		// https://developers.google.com/identity/openid-connect/openid-connect#an-id-tokens-payload
-		const { getExistingUser, googleUser, createUser } = await googleAuth.validateCallback(code);
+		const { getExistingUser, createUser, googleUser } = await googleAuth.validateCallback(code);
 
 		const getUser = async () => {
 			const existingUser = await getExistingUser();
