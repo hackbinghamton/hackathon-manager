@@ -21,6 +21,7 @@ export const user = pgTable('user', {
 	lastName: text('last_name').notNull(),
 	avatarUrl: text('avatar_url').notNull(),
 	// May need to be deducted from email.
+	// NOTE: The Discord connection metadata depends on this.
 	domain: text('domain').notNull(),
 
 	// Our Stuff
@@ -30,6 +31,28 @@ export const user = pgTable('user', {
 	joinDate: timestamp('join_date', { withTimezone: true, mode: 'date' }).notNull(),
 	isSignedUp: boolean('is_signed_up').notNull()
 });
+
+export const discordUser = pgTable('discord_user', {
+	userId: varchar('user_id', {
+		length: 15
+	})
+		.primaryKey()
+		.references(() => user.id),
+	id: text('id').notNull(),
+	username: text('username').notNull(),
+	accessToken: text('access_token').notNull(),
+	refreshToken: text('refresh_token').notNull(),
+	accessTokenExpiry: timestamp('access_token_expiry', {
+		withTimezone: true,
+		mode: 'date'
+	}).notNull()
+	// TODO: Add a generated column referencing a discord key,
+	// once Drizzle supports it. Currently blocked by:
+	// https://github.com/drizzle-team/drizzle-orm/issues/295
+});
+
+// Not to be confused with Lucia's DiscordUser.
+export type DiscordUser = typeof discordUser.$inferSelect;
 
 // Make sure that you add additional columns to the Lucia.DatabaseSessionAttributes type.
 export const session = pgTable('user_session', {

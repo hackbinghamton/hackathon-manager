@@ -1,6 +1,6 @@
 import { lucia } from 'lucia';
 import { postgres as postgresAdapter } from '@lucia-auth/adapter-postgresql';
-import { google } from '@lucia-auth/oauth/providers';
+import { discord, google } from '@lucia-auth/oauth/providers';
 import { sveltekit } from 'lucia/middleware';
 import { dev } from '$app/environment';
 import { env } from '$env/dynamic/private';
@@ -37,6 +37,26 @@ export const googleAuth = google(auth, {
 	scope: ['https://www.googleapis.com/auth/userinfo.email'],
 	accessType: 'offline'
 });
+
+export const discordClientId = env.DISCORD_CLIENT_ID;
+if (!discordClientId) {
+	throw new Error('Discord OAuth client ID not provided.');
+}
+export const discordClientSecret = env.DISCORD_CLIENT_SECRET;
+if (!discordClientSecret) {
+	throw new Error('Discord OAuth secret not provided.');
+}
+export const discordAuth = discord(auth, {
+	clientId: discordClientId,
+	clientSecret: discordClientSecret,
+	redirectUri: env.DISCORD_REDIRECT_URI,
+	scope: ['role_connections.write']
+});
+
+// Converts from relative number of seconds to Date.
+export function relSecsToDate(expiresIn: number) {
+	return new Date(Date.now() + expiresIn * 1000);
+}
 
 export type Auth = typeof auth;
 
