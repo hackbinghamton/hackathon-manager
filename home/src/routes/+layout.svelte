@@ -6,7 +6,8 @@
 		A,
 		Dropdown,
 		DropdownHeader,
-		DropdownItem
+		DropdownItem,
+		DropdownDivider
 	} from 'flowbite-svelte';
 	import MyAlert from '$lib/components/MyAlert.svelte';
 	import { getFlash } from 'sveltekit-flash-message';
@@ -78,6 +79,8 @@
 						<span class="block text-sm">{user.name}</span>
 						<span class="block truncate text-sm font-medium">{user.email}</span>
 					</DropdownHeader>
+					<DropdownItem href="/profile">Profile</DropdownItem>
+					<DropdownDivider />
 					<form method="post" action="/?/logout" use:enhance>
 						<DropdownItem type="submit">Sign out</DropdownItem>
 					</form>
