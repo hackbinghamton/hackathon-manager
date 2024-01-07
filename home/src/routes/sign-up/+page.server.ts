@@ -5,7 +5,7 @@ import { error } from '@sveltejs/kit';
 import { auth } from '$lib/server/lucia';
 
 const schema = z.object({
-	name: z.string().email()
+	name: z.string().optional()
 });
 
 const ERROR_NOT_SIGNED_IN: App.Error = {
