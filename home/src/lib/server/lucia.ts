@@ -4,6 +4,7 @@ import { google } from '@lucia-auth/oauth/providers';
 import { sveltekit } from 'lucia/middleware';
 import { dev } from '$app/environment';
 import { env } from '$env/dynamic/private';
+import type { Cookies } from '@sveltejs/kit';
 
 import { client } from './db.js';
 
@@ -38,3 +39,11 @@ export const googleAuth = google(auth, {
 });
 
 export type Auth = typeof auth;
+
+type CookieSetParams = Parameters<Cookies['set']>;
+export const OAUTH_STATE_COOKIE_OPTS: CookieSetParams[2] = {
+	httpOnly: true,
+	secure: !dev,
+	path: '/',
+	maxAge: 60 * 60
+};
