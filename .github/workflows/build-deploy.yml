@@ -10,9 +10,9 @@ jobs:
       matrix:
         image:
           [
-            { dockerfile: 'Dockerfile.pnpm', target: 'dev' },
+            { dockerfile: 'Dockerfile.pnpm', context: 'docker', target: 'dev' },
             { dockerfile: 'Dockerfile.pnpm', target: 'home' },
-            { dockerfile: 'Dockerfile.postgres', tag: 'postgres' }
+            { dockerfile: 'Dockerfile.postgres', context: 'docker', tag: 'postgres' }
           ]
     # See: https://github.com/docker/build-push-action
     steps:
@@ -35,6 +35,7 @@ jobs:
       - name: 'Build and push'
         uses: 'docker/build-push-action@v5'
         with:
+          context: '{{defaultContext}}:${{ matrix.image.context }}'
           file: './docker/${{ matrix.image.dockerfile }}'
           target: '${{ matrix.image.target }}'
           platforms: 'linux/amd64,linux/arm64'
