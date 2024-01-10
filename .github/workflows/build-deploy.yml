@@ -10,9 +10,9 @@ jobs:
       matrix:
         # TODO: These multi-stage builds are inefficient. This probably needs Bake:
         # https://stackoverflow.com/a/65583728/5719930
-        image: [
-            # TODO wait no this should be its own image like home
-            { context: 'docker', dockerfile: 'Dockerfile.pnpm', target: 'dev' },
+        image:
+          [
+            { dockerfile: './docker/Dockerfile.pnpm', target: 'prep' },
             { dockerfile: './docker/Dockerfile.pnpm', target: 'home' },
             { context: 'docker', dockerfile: 'Dockerfile.postgres', tag: 'postgres' }
           ]
