@@ -21,7 +21,7 @@ jobs:
       - name: Generate Docker tags
         uses: docker/metadata-action@v5
         with:
-          images: 'hackbu/${{ matrix.image.target || matrix.image.tag }}'
+          images: '${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image.target || matrix.image.tag }}'
           tags: type=sha
           flavor: latest=true
       # Docs: https://github.com/docker/setup-qemu-action
