@@ -2,7 +2,7 @@ import { lucia } from 'lucia';
 import { postgres as postgresAdapter } from '@lucia-auth/adapter-postgresql';
 import { discord, google } from '@lucia-auth/oauth/providers';
 import { sveltekit } from 'lucia/middleware';
-import { dev } from '$app/environment';
+import { building, dev } from '$app/environment';
 import { env } from '$env/dynamic/private';
 import type { Cookies } from '@sveltejs/kit';
 
@@ -39,11 +39,11 @@ export const googleAuth = google(auth, {
 });
 
 export const discordClientId = env.DISCORD_CLIENT_ID;
-if (!discordClientId) {
+if (!building && !discordClientId) {
 	throw new Error('Discord OAuth client ID not provided.');
 }
 export const discordClientSecret = env.DISCORD_CLIENT_SECRET;
-if (!discordClientSecret) {
+if (!building && !discordClientSecret) {
 	throw new Error('Discord OAuth secret not provided.');
 }
 export const discordAuth = discord(auth, {
