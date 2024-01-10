@@ -36,6 +36,7 @@ services:
     <<: *node
     depends_on:
       - 'prep'
+      - 'db'
     container_name: 'home'
     working_dir: '/home/node/app/home'
     command: ['pnpm', 'run', 'dev', '--host']
