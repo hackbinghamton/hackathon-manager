@@ -2,6 +2,7 @@
 	"extends": ["../tsconfig.json"],
 	"compilerOptions": {
 		"module": "nodenext",
+		"outDir": "build",
 		"target": "es2022"
 	}
 }

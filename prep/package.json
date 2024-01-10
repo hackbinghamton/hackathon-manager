@@ -3,11 +3,15 @@
 	"version": "0.0.1",
 	"private": true,
 	"type": "module",
+	"files": [
+		"/build"
+	],
 	"scripts": {
-		"prep:discord": "tsx prep-discord.ts"
+		"watch": "tsc --watch",
+		"build": "tsc",
+		"prep:discord": "node build/prep-discord.js"
 	},
 	"devDependencies": {
-		"@types/node": "^20.10.6",
-		"tsx": "^4.7.0"
+		"@types/node": "^20.10.6"
 	}
 }
