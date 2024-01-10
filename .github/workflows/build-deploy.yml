@@ -22,7 +22,7 @@ jobs:
         uses: 'docker/build-push-action@v5'
         with:
           context: '.'
-          file: '{{context}}/Dockerfile.pnpm'
+          file: 'docker/Dockerfile.pnpm'
           platforms: 'linux/amd64,linux/arm64'
           # TODO
           push: 'false'
