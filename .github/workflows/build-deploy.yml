@@ -16,8 +16,8 @@ jobs:
             { dockerfile: './docker/Dockerfile.pnpm', target: 'home' },
             { context: 'docker', dockerfile: 'Dockerfile.postgres', tag: 'postgres' }
           ]
-    # See: https://github.com/docker/build-push-action
     steps:
+      # Docs: https://github.com/docker/metadata-action
       - name: Generate Docker tags
         uses: docker/metadata-action@v5
         with:
