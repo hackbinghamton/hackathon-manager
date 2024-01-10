@@ -19,6 +19,7 @@ jobs:
     steps:
       # Docs: https://github.com/docker/metadata-action
       - name: Generate Docker tags
+        id: meta
         uses: docker/metadata-action@v5
         with:
           images: '${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image.target || matrix.image.tag }}'
