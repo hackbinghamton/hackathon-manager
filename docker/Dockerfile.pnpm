@@ -4,12 +4,45 @@
 
 # This Dockerfile builds an image with pnpm for development.
 
+# This internal image provides a Node.js binary.
 # Consider keeping this in sync with the other distro choices.
-FROM node:21.5.0-alpine3.19
+FROM node:21.5.0-alpine3.19 AS base
+
+# This internal image provides a pnpm binary.
+FROM base as pnpm
 
 ENV PNPM_HOME="/opt/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
+# This image provides an environment to run an arbitrary subproject
+# in development mode.
+# Assumes the repository root is mounted to the working directory.
+# Build context does not matter.
+FROM pnpm as dev
+
 USER node
 WORKDIR /home/node/app
+
+# This internal image provides a temporary environment to build the workspace.
+# Assumes the build context is the repository root.
+# Mounts do not matter.
+FROM pnpm as build
+
+COPY . /root/app
+WORKDIR /root/app
+RUN --mount=type=cache,id=pnpm,target=${PNPM_HOME}/store pnpm install --frozen-lockfile \
+	&& pnpm run -r build \
+	&& pnpm deploy --filter=home --prod /opt/home
+
+# This image provides an environment to run an arbitrary subproject
+# in development mode.
+
+FROM base as home
+
+COPY --from=build /opt/home /opt/home
+USER node
+WORKDIR /opt/home
+ENV PORT 5173
+# "build" here refers to the build output directory - not a build step of any sort.
+CMD ["build", "--host"]
