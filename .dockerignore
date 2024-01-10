@@ -6,3 +6,5 @@
 !pnpm-workspace.yaml
 !pnpm-lock.yaml
 !tsconfig.json
+node_modules
+build
