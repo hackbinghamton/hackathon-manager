@@ -8,7 +8,8 @@ jobs:
     runs-on: 'ubuntu-22.04'
     strategy:
       matrix:
-        # TODO: These multi-stage builds are inefficient.
+        # TODO: These multi-stage builds are inefficient. This is probably not fixable
+        # without separate build/deploy steps.
         image:
           [
             { context: 'docker', dockerfile: 'Dockerfile.pnpm', target: 'dev' },
