@@ -8,10 +8,10 @@ jobs:
     runs-on: 'ubuntu-22.04'
     strategy:
       matrix:
-        # TODO: These multi-stage builds are inefficient. This is probably not fixable
-        # without separate build/deploy steps.
-        image:
-          [
+        # TODO: These multi-stage builds are inefficient. This probably needs Bake:
+        # https://stackoverflow.com/a/65583728/5719930
+        image: [
+            # TODO wait no this should be its own image like home
             { context: 'docker', dockerfile: 'Dockerfile.pnpm', target: 'dev' },
             { dockerfile: './docker/Dockerfile.pnpm', target: 'home' },
             { context: 'docker', dockerfile: 'Dockerfile.postgres', tag: 'postgres' }
