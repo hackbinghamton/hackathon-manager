@@ -12,6 +12,9 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
+	"files": [
+		"/build"
+	],
 	"devDependencies": {
 		"@lucia-auth/adapter-postgresql": "^2.0.2",
 		"@lucia-auth/oauth": "^3.5.0",
