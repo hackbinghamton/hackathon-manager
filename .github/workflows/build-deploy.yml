@@ -8,11 +8,12 @@ jobs:
     runs-on: 'ubuntu-22.04'
     strategy:
       matrix:
+        # TODO: These multi-stage builds are inefficient.
         image:
           [
-            { dockerfile: 'Dockerfile.pnpm', context: 'docker', target: 'dev' },
-            { dockerfile: 'Dockerfile.pnpm', target: 'home' },
-            { dockerfile: 'Dockerfile.postgres', context: 'docker', tag: 'postgres' }
+            { context: 'docker', dockerfile: 'Dockerfile.pnpm', target: 'dev' },
+            { dockerfile: './docker/Dockerfile.pnpm', target: 'home' },
+            { context: 'docker', dockerfile: 'Dockerfile.postgres', tag: 'postgres' }
           ]
     # See: https://github.com/docker/build-push-action
     steps:
@@ -36,7 +37,7 @@ jobs:
         uses: 'docker/build-push-action@v5'
         with:
           context: '{{defaultContext}}:${{ matrix.image.context }}'
-          file: './docker/${{ matrix.image.dockerfile }}'
+          file: '${{ matrix.image.dockerfile }}'
           target: '${{ matrix.image.target }}'
           platforms: 'linux/amd64,linux/arm64'
           # TODO
