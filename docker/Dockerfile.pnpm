@@ -33,10 +33,19 @@ COPY . /root/app
 WORKDIR /root/app
 RUN --mount=type=cache,id=pnpm,target=${PNPM_HOME}/store pnpm install --frozen-lockfile \
 	&& pnpm run -r build \
+	&& pnpm deploy --filter=prep --prod /opt/prep \
 	&& pnpm deploy --filter=home --prod /opt/home
 
-# This image provides an environment to run an arbitrary subproject
-# in development mode.
+# This image provides an environment to run specific subproject
+# in production mode.
+
+FROM base as prep
+
+COPY --from=build /opt/prep /opt/prep
+USER node
+WORKDIR /opt/prep
+CMD ["build"]
+
 
 FROM base as home
 
