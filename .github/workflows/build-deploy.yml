@@ -10,7 +10,7 @@ jobs:
       matrix:
         image:
           [
-            { dockerfile: 'Dockerfile.pnpm', target: 'prep' },
+            { dockerfile: 'Dockerfile.pnpm', target: 'dev' },
             { dockerfile: 'Dockerfile.pnpm', target: 'home' },
             { dockerfile: 'Dockerfile.postgres', tag: 'postgres' }
           ]
