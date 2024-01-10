@@ -28,6 +28,7 @@ services:
     build:
       context: './docker'
       dockerfile: 'Dockerfile.pnpm'
+      target: 'dev'
     env_file: '.env'
     volumes:
       - '.:/home/node/app'
