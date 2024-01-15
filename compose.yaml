@@ -17,7 +17,6 @@ services:
     # and Adminer has gone pretty unmaintained. So we settle for this image based
     # on Debian Bullseye.
     image: 'adminer:4.8.1'
-    restart: 'always'
     ports:
       - '8080:8080'
 
