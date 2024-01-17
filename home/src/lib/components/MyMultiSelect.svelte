@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Badge } from 'flowbite-svelte';
 	import { twMerge } from 'tailwind-merge';
+	import { Input, Button } from 'flowbite-svelte';
 	import type { FormSizeType, SelectOptionType } from 'flowbite-svelte';
 
 	export let items: SelectOptionType<any>[] = [];
@@ -10,6 +11,7 @@
 
 	let selectItems: SelectOptionType<any>[] = items.filter((x) => value.includes(x.value));
 	let show: boolean = false;
+	let customOptionText = '';
 
 	const sizes = {
 		sm: 'px-2 py-1 min-h-[2.4rem]',
@@ -43,9 +45,17 @@
 		}
 	};
 
-	const clearAll = (e: MouseEvent) => {
-		e.stopPropagation();
-		value = [];
+	const addCustomOption = () => {
+		if (!customOptionText) {
+			return;
+		}
+		let customOption = items.find((option) => option.name == customOptionText);
+		if (!customOption) {
+			customOption = { name: customOptionText, value: customOptionText };
+			items = [...items, customOption];
+		}
+		selectOption(customOption);
+		customOptionText = '';
 	};
 
 	const clearThisOption = (select: SelectOptionType<any>) => {
@@ -86,9 +96,20 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
 	on:click={() => (show = !show)}
-	on:focusout={() => (show = false)}
+	on:focusout={() => {
+		// TODO: maybe figure out a better way to check whether we lost focus to a child?
+		setTimeout(() => {
+			// The first case is when we focus the input or button.
+			// The second case is when we focus the input and then click to the right of the button.
+			if (document.activeElement?.parentElement?.id != 'custom-option' && 
+				document.activeElement?.id != 'multi-select') {
+				show = false;
+			}
+		}, 0);
+	}}
 	tabindex="-1"
 	role="listbox"
+	id="multi-select"
 	class={twMerge(multiSelectClass, sizes[size], $$props.class)}
 >
 	<span class="flex flex-wrap gap-2">
@@ -134,11 +155,20 @@
 				<div
 					on:click={() => selectOption(item)}
 					role="presentation"
-					class={twMerge(itemsClass, selectItems.includes(item) && itemsSelectClass)}
+					class={twMerge(commonItemsClass, itemsClass, selectItems.includes(item) && itemsSelectClass)}
 				>
 					{item.name}
 				</div>
 			{/each}
+			<form on:submit|preventDefault={addCustomOption}>
+				<div id="custom-option" class={twMerge(commonItemsClass, "flex gap-2")}>
+					<Input
+						class="max-w-80 py-2 focus:border-gray-300 focus:ring-0"
+						bind:value={customOptionText}
+					/>
+					<Button type="submit" class="py-0">Add</Button>
+				</div>
+			</form>
 		</div>
 	{/if}
 </div>
