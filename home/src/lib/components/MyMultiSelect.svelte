@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Badge } from 'flowbite-svelte';
-	import { CloseButton } from 'flowbite-svelte';
 	import { twMerge } from 'tailwind-merge';
 	import type { FormSizeType, SelectOptionType } from 'flowbite-svelte';
 
@@ -110,9 +109,6 @@
 		{/if}
 	</span>
 	<div class="ms-auto flex items-center gap-2">
-		{#if selectItems.length}
-			<CloseButton {size} on:click={clearAll} color="none" class="p-0 focus:ring-gray-400" />
-		{/if}
 		<div class="w-[1px] bg-gray-300 dark:bg-gray-600" />
 		<svg
 			class="ms-1 h-3 w-3 cursor-pointer text-gray-800 dark:text-white"
