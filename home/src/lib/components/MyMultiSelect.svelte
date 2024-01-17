@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Badge from '$lib/badge/Badge.svelte';
-	import CloseButton from '$lib/utils/CloseButton.svelte';
+	import { Badge } from 'flowbite-svelte';
+	import { CloseButton } from 'flowbite-svelte';
 	import { twMerge } from 'tailwind-merge';
-	import type { FormSizeType, SelectOptionType } from '../types';
+	import type { FormSizeType, SelectOptionType } from 'flowbite-svelte';
   
 	export let items: SelectOptionType<any>[] = [];
 	export let value: (string | number)[] = [];
