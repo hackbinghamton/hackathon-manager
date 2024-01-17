@@ -3,113 +3,151 @@
 	import { CloseButton } from 'flowbite-svelte';
 	import { twMerge } from 'tailwind-merge';
 	import type { FormSizeType, SelectOptionType } from 'flowbite-svelte';
-  
+
 	export let items: SelectOptionType<any>[] = [];
 	export let value: (string | number)[] = [];
 	export let size: FormSizeType = 'md';
 	export let dropdownClass: string = '';
-  
+
 	let selectItems: SelectOptionType<any>[] = items.filter((x) => value.includes(x.value));
 	let show: boolean = false;
-  
+
 	const sizes = {
-	  sm: 'px-2 py-1 min-h-[2.4rem]',
-	  md: 'px-3 py-1 min-h-[2.7rem]',
-	  lg: 'px-4 py-2 min-h-[3.2rem]'
+		sm: 'px-2 py-1 min-h-[2.4rem]',
+		md: 'px-3 py-1 min-h-[2.7rem]',
+		lg: 'px-4 py-2 min-h-[3.2rem]'
 	};
-  
+
 	// Container
-	const multiSelectClass: string = 'relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 focus-within:ring-1 focus-within:border-primary-500 ring-primary-500 dark:focus-within:border-primary-500 dark:ring-primary-500';
-  
+	const multiSelectClass: string =
+		'relative border border-gray-300 flex items-center rounded-lg gap-2 dark:border-gray-600 focus-within:ring-1 focus-within:border-primary-500 ring-primary-500 dark:focus-within:border-primary-500 dark:ring-primary-500';
+
 	// Dropdown
 	let multiSelectDropdown: string;
-	$: multiSelectDropdown = twMerge('absolute z-50 p-3 flex flex-col gap-1 max-h-64 bg-white border border-gray-300 dark:bg-gray-700 dark:border-gray-600 start-0 top-[calc(100%+1rem)] rounded-lg cursor-pointer overflow-y-scroll w-full', dropdownClass);
-  
+	$: multiSelectDropdown = twMerge(
+		'absolute z-50 p-3 flex flex-col gap-1 max-h-64 bg-white border border-gray-300 dark:bg-gray-700 dark:border-gray-600 start-0 top-[calc(100%+1rem)] rounded-lg cursor-pointer overflow-y-scroll w-full',
+		dropdownClass
+	);
+
 	// Items
-	const itemsClass: string = 'py-2 px-3 rounded-lg text-gray-600 hover:text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:text-gray-300 dark:hover:bg-gray-600';
+	const itemsClass: string =
+		'py-2 px-3 rounded-lg text-gray-600 hover:text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:text-gray-300 dark:hover:bg-gray-600';
 	// Selected items
-	const itemsSelectClass: string = 'bg-gray-100 text-black hover:text-black dark:text-white dark:bg-gray-600 dark:hover:text-white';
-  
+	const itemsSelectClass: string =
+		'bg-gray-100 text-black hover:text-black dark:text-white dark:bg-gray-600 dark:hover:text-white';
+
 	const selectOption = (select: SelectOptionType<any>) => {
-	  if (value.includes(select.value)) {
-		clearThisOption(select);
-	  } else {
-		if (!value.includes(select.value)) value = [...value, select.value];
-	  }
-	};
-  
-	const clearAll = (e: MouseEvent) => {
-	  e.stopPropagation();
-	  value = [];
-	};
-  
-	const clearThisOption = (select: SelectOptionType<any>) => {
-	  if (value.includes(select.value)) {
-		value = value.filter((o) => o !== select.value);
-	  }
-	};
-  
-	function create_custom_event(type: string, detail: any, { bubbles = false, cancelable = false } = {}) {
-	  return new CustomEvent(type, { detail, bubbles, cancelable });
-	}
-  
-	function init(node: HTMLSelectElement, value: any) {
-	  const inital = value; // hack for below
-	  return {
-		update: (value: any) => {
-		  selectItems = items.filter((x) => value.includes(x.value));
-		  // avoid initial event emitting
-		  if (value !== inital) {
-			node.dispatchEvent(create_custom_event('input', selectItems));
-			node.dispatchEvent(create_custom_event('change', selectItems));
-		  }
+		if (value.includes(select.value)) {
+			clearThisOption(select);
+		} else {
+			if (!value.includes(select.value)) value = [...value, select.value];
 		}
-	  };
+	};
+
+	const clearAll = (e: MouseEvent) => {
+		e.stopPropagation();
+		value = [];
+	};
+
+	const clearThisOption = (select: SelectOptionType<any>) => {
+		if (value.includes(select.value)) {
+			value = value.filter((o) => o !== select.value);
+		}
+	};
+
+	function create_custom_event(
+		type: string,
+		detail: any,
+		{ bubbles = false, cancelable = false } = {}
+	) {
+		return new CustomEvent(type, { detail, bubbles, cancelable });
 	}
-  </script>
-  
-  <!-- Hidden select for form submission -->
-  <select use:init={value} {...$$restProps} {value} hidden multiple on:change on:input>
+
+	function init(node: HTMLSelectElement, value: any) {
+		const inital = value; // hack for below
+		return {
+			update: (value: any) => {
+				selectItems = items.filter((x) => value.includes(x.value));
+				// avoid initial event emitting
+				if (value !== inital) {
+					node.dispatchEvent(create_custom_event('input', selectItems));
+					node.dispatchEvent(create_custom_event('change', selectItems));
+				}
+			}
+		};
+	}
+</script>
+
+<!-- Hidden select for form submission -->
+<select use:init={value} {...$$restProps} {value} hidden multiple on:change on:input>
 	{#each items as { value, name }}
-	  <option {value}>{name}</option>
+		<option {value}>{name}</option>
 	{/each}
-  </select>
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <div on:click={() => (show = !show)} on:focusout={() => (show = false)} tabindex="-1" role="listbox" class={twMerge(multiSelectClass, sizes[size], $$props.class)}>
-	<span class="flex gap-2 flex-wrap">
-	  {#if selectItems.length}
-		{#each selectItems as item (item.name)}
-		  <slot {item} clear={() => clearThisOption(item)}>
-			<Badge color="dark" large={size === 'lg'} dismissable params={{ duration: 100 }} on:close={() => clearThisOption(item)}>
-			  {item.name}
-			</Badge>
-		  </slot>
-		{/each}
-	  {/if}
+</select>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div
+	on:click={() => (show = !show)}
+	on:focusout={() => (show = false)}
+	tabindex="-1"
+	role="listbox"
+	class={twMerge(multiSelectClass, sizes[size], $$props.class)}
+>
+	<span class="flex flex-wrap gap-2">
+		{#if selectItems.length}
+			{#each selectItems as item (item.name)}
+				<slot {item} clear={() => clearThisOption(item)}>
+					<Badge
+						color="dark"
+						large={size === 'lg'}
+						dismissable
+						params={{ duration: 100 }}
+						on:close={() => clearThisOption(item)}
+					>
+						{item.name}
+					</Badge>
+				</slot>
+			{/each}
+		{/if}
 	</span>
-	<div class="flex ms-auto gap-2 items-center">
-	  {#if selectItems.length}
-		<CloseButton {size} on:click={clearAll} color="none" class="p-0 focus:ring-gray-400" />
-	  {/if}
-	  <div class="w-[1px] bg-gray-300 dark:bg-gray-600" />
-	  <svg class="cursor-pointer h-3 w-3 ms-1 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-		<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={show ? 'm1 5 4-4 4 4' : 'm9 1-4 4-4-4'} />
-	  </svg>
+	<div class="ms-auto flex items-center gap-2">
+		{#if selectItems.length}
+			<CloseButton {size} on:click={clearAll} color="none" class="p-0 focus:ring-gray-400" />
+		{/if}
+		<div class="w-[1px] bg-gray-300 dark:bg-gray-600" />
+		<svg
+			class="ms-1 h-3 w-3 cursor-pointer text-gray-800 dark:text-white"
+			aria-hidden="true"
+			xmlns="http://www.w3.org/2000/svg"
+			fill="none"
+			viewBox="0 0 10 6"
+		>
+			<path
+				stroke="currentColor"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				stroke-width="2"
+				d={show ? 'm1 5 4-4 4 4' : 'm9 1-4 4-4-4'}
+			/>
+		</svg>
 	</div>
-  
+
 	{#if show}
-	  <div on:click|stopPropagation role="presentation" class={multiSelectDropdown}>
-		{#each items as item (item.name)}
-		  <!-- svelte-ignore a11y-click-events-have-key-events -->
-		  <div on:click={() => selectOption(item)} role="presentation" class={twMerge(itemsClass, selectItems.includes(item) && itemsSelectClass)}>
-			{item.name}
-		  </div>
-		{/each}
-	  </div>
+		<div on:click|stopPropagation role="presentation" class={multiSelectDropdown}>
+			{#each items as item (item.name)}
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<div
+					on:click={() => selectOption(item)}
+					role="presentation"
+					class={twMerge(itemsClass, selectItems.includes(item) && itemsSelectClass)}
+				>
+					{item.name}
+				</div>
+			{/each}
+		</div>
 	{/if}
-  </div>
-  
-  <!--
+</div>
+
+<!--
   @component
   [Go to docs](https://flowbite-svelte.com/)
   ## Props
