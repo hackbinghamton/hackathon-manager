@@ -26,13 +26,14 @@
 	// Dropdown
 	let multiSelectDropdown: string;
 	$: multiSelectDropdown = twMerge(
-		'absolute z-50 p-3 flex flex-col gap-1 max-h-64 bg-white border border-gray-300 dark:bg-gray-700 dark:border-gray-600 start-0 top-[calc(100%+1rem)] rounded-lg cursor-pointer overflow-y-scroll w-full',
+		'absolute z-50 p-3 flex flex-col gap-0 max-h-92 bg-white border border-gray-300 dark:bg-gray-700 dark:border-gray-600 start-0 top-[calc(100%+0.5rem)] rounded-lg cursor-pointer overflow-y-scroll w-full',
 		dropdownClass
 	);
 
 	// Items
+	const commonItemsClass: string = 'py-1.5 px-3';
 	const itemsClass: string =
-		'py-2 px-3 rounded-lg text-gray-600 hover:text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:text-gray-300 dark:hover:bg-gray-600';
+		'rounded-lg text-gray-600 hover:text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:text-gray-300 dark:hover:bg-gray-600';
 	// Selected items
 	const itemsSelectClass: string =
 		'bg-gray-100 text-black hover:text-black dark:text-white dark:bg-gray-600 dark:hover:text-white';
