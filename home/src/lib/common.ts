@@ -4,3 +4,15 @@ export enum OrgRole {
 	Organizer = 'organizer',
 	SeniorOrganizer = 'senior_organizer'
 }
+
+export enum UniRole {
+	Undergrad = 'ug',
+	Masters = 'ms',
+	PhD = 'phd',
+	FacStaff = 'facstaff'
+}
+
+export enum GradSem {
+	Spring = 'spring',
+	Winter = 'winter'
+}
