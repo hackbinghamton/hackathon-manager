@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1705568286463,
+      "tag": "0000_strange_caretaker",
+      "breakpoints": true
+    }
+  ]
+}
