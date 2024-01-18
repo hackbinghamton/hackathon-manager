@@ -1,4 +1,3 @@
-import { GradSem, OrgRole, UniRole } from './index.js';
 import {
 	pgTable,
 	bigint,
@@ -11,6 +10,25 @@ import {
 } from 'drizzle-orm/pg-core';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
+
+export enum OrgRole {
+	Member = 'member',
+	Helper = 'helper',
+	Organizer = 'organizer',
+	SeniorOrganizer = 'senior_organizer'
+}
+
+export enum UniRole {
+	Undergrad = 'ug',
+	Masters = 'ms',
+	PhD = 'phd',
+	FacStaff = 'facstaff'
+}
+
+export enum GradSem {
+	Spring = 'spring',
+	Winter = 'winter'
+}
 
 export const orgRoleEnum = pgEnum('org_role', [
 	OrgRole.Member,
