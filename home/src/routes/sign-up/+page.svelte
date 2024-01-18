@@ -6,10 +6,12 @@
 	import MyAlert from '$lib/components/MyAlert.svelte';
 	import MyHeading from '$lib/components/MyHeading.svelte';
 	import MyMultiSelect from '$lib/components/MyMultiSelect.svelte';
-	import { UniRole, GradSem } from '$lib/common.js';
 	import FormError from '$lib/components/FormError.svelte';
 
 	export let data;
+
+	const { UniRole, GradSem } = data;
+
 
 	const { form, enhance, errors, allErrors, constraints, message } = superForm(data.form, {
 		// Catch errors so that we don't get whisked away from the form to an error page.
