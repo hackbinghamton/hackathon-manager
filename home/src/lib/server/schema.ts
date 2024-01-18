@@ -14,6 +14,8 @@ export const user = pgTable('user', {
 
 	// User Info
 
+	// For permissions.
+	orgRole: orgRoleEnum('org_role').notNull(),
 	email: varchar('email', { length: 254 }).notNull(),
 	// May need to be deducted from first + last name.
 	name: text('name').notNull(),

@@ -4,6 +4,7 @@ declare global {
 	declare namespace Lucia {
 		type Auth = import('./lib/server/lucia.js').Auth;
 		type DatabaseUserAttributes = {
+			org_role: string;
 			email: string;
 			name: string;
 			first_name: string;
