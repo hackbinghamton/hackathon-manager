@@ -1,7 +1,7 @@
 import { error, redirect } from '@sveltejs/kit';
 import { OAuthRequestError } from '@lucia-auth/oauth';
 import { auth, googleAuth } from '$lib/server/lucia.js';
-import { OrgRole } from '$lib/common.js';
+import { OrgRole } from 'lib';
 
 export const load = async ({ url, cookies, locals }) => {
 	const storedState = cookies.get('google_oauth_state');

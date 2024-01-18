@@ -2,7 +2,7 @@ import { error } from '@sveltejs/kit';
 import { OAuthRequestError } from '@lucia-auth/oauth';
 import { auth, discordAuth, relSecsToDate } from '$lib/server/lucia.js';
 import { db } from '$lib/server/db.js';
-import { discordUser as discordUserTable } from '$lib/server/schema.js';
+import { discordUser as discordUserTable } from 'lib/schema';
 import { eq } from 'drizzle-orm';
 import {
 	COOKIE_KEY_DISCORD,

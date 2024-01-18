@@ -1,4 +1,4 @@
-import { GradSem, OrgRole, UniRole } from '../common';
+import { GradSem, OrgRole, UniRole } from './index.js';
 import {
 	pgTable,
 	bigint,

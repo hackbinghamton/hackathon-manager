@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm';
 import { db } from './db';
 import { discordClientId, discordClientSecret, relSecsToDate } from './lucia';
-import { discordUser as discordUserTable, type DiscordUser } from './schema';
+import { discordUser as discordUserTable, type DiscordUser } from 'lib/schema';
 
 // This should be consistent with the Discord prep script.
 interface ConnectionMetadata {

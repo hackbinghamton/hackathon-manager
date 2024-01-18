@@ -26,6 +26,7 @@
 		"flowbite": "^2.2.1",
 		"flowbite-svelte": "^0.44.21",
 		"flowbite-svelte-icons": "^0.4.5",
+		"lib": "workspace:*",
 		"lucia": "^2.7.6",
 		"postcss": "^8.4.32",
 		"postcss-load-config": "^4.0.2",

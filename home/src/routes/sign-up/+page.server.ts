@@ -1,7 +1,7 @@
 import { message, superValidate } from 'sveltekit-superforms/server';
 import { redirect as redirectFlash } from 'sveltekit-flash-message/server';
 import { error, redirect } from '@sveltejs/kit';
-import { registrationRegular, userSignupSchema } from '$lib/server/schema.js';
+import { registrationRegular, userSignupSchema } from 'lib/schema';
 import { auth } from '$lib/server/lucia';
 import { COOKIE_KEY_DISCORD, MSG_FROM_DISCORD } from '$lib/server/discord.js';
 import { db } from '$lib/server/db.js';
