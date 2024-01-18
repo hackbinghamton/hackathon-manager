@@ -1,5 +1,5 @@
 import { eq } from 'drizzle-orm';
-import { db } from './db';
+import { db } from '$lib/server/db';
 import { discordClientId, discordClientSecret, relSecsToDate } from './lucia';
 import { discordUser as discordUserTable, type DiscordUser } from 'lib/schema';
 

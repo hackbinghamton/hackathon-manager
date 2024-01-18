@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { OAuthRequestError } from '@lucia-auth/oauth';
-import { auth, discordAuth, relSecsToDate } from '$lib/server/lucia.js';
-import { db } from '$lib/server/db.js';
+import { auth, discordAuth, relSecsToDate } from '$lib/server/lucia';
+import { db } from '$lib/server/db';
 import { discordUser as discordUserTable } from 'lib/schema';
 import { eq } from 'drizzle-orm';
 import {
