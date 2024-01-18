@@ -89,6 +89,7 @@
 </script>
 
 <!-- Hidden select for form submission -->
+<!-- TODO: this is not keyboard-accessible :( -->
 <select use:init={value} {...$$restProps} {value} hidden multiple on:change on:input>
 	{#each items as { value, name }}
 		<option {value}>{name}</option>
