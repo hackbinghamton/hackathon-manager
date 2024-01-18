@@ -9,9 +9,14 @@
 	"scripts": {
 		"watch": "tsc --watch",
 		"build": "tsc",
-		"prep:discord": "node build/prep-discord.js"
+		"prep:discord": "node build/prep-discord.js",
+		"prep:db": "node build/prep-db.js"
 	},
 	"devDependencies": {
 		"@types/node": "^20.10.6"
+	},
+	"dependencies": {
+		"drizzle-orm": "^0.29.3",
+		"postgres": "^3.4.3"
 	}
 }
