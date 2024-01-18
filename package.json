@@ -6,7 +6,8 @@
 		"lint": "pnpm -r lint",
 		"check": "pnpm -r check",
 		"build": "pnpm -r build",
-		"prep:discord": "cd prep && pnpm prep:discord"
+		"prep:discord": "cd prep && pnpm prep:discord",
+		"prep:db": "cd prep && pnpm prep:db"
 	},
 	"dependencies": {
 		"drizzle-kit": "^0.20.10"
