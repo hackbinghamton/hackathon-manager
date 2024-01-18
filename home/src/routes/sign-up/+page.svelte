@@ -30,7 +30,7 @@
 
 <header>
 	<MyHeading tag="h1">Complete registration</MyHeading>
-	<P>We just need a little more info to setup your account:</P>
+	<P>We just need a little more info to get started:</P>
 </header>
 
 <main>
