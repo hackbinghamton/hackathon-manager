@@ -25,9 +25,6 @@ export const user = pgTable('user', {
 	// May need to be deducted from email.
 	// NOTE: The Discord connection metadata depends on this.
 	domain: text('domain').notNull(),
-
-	// Our Stuff
-
 	// This is the datetime when the user successfully authenticates via OAuth,
 	// which is a little bit earlier than they complete the sign-up process.
 	joinDate: timestamp('join_date', { withTimezone: true, mode: 'date' }).notNull(),
