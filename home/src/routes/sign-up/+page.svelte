@@ -1,10 +1,13 @@
 <script lang="ts">
-	import { Label, Input, Helper, P, Button } from 'flowbite-svelte';
+	import { Label, Input, P, Button, type SelectOptionType, Select } from 'flowbite-svelte';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { dev } from '$app/environment';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import MyAlert from '$lib/components/MyAlert.svelte';
 	import MyHeading from '$lib/components/MyHeading.svelte';
+	import MyMultiSelect from '$lib/components/MyMultiSelect.svelte';
+	import { UniRole, GradSem } from '$lib/common.js';
+	import FormError from '$lib/components/FormError.svelte';
 
 	export let data;
 
@@ -26,6 +29,48 @@
 	//
 	// [1] relevant to: https://stackoverflow.com/a/7730719/5719930.
 	const inputClass = 'read-only:cursor-not-allowed';
+
+	const uniRoleOptions = [
+		{
+			name: 'Undergraduate Student (BS or BA)',
+			value: UniRole.Undergrad
+		},
+		{
+			name: "Master's Student",
+			value: UniRole.Masters
+		},
+		{
+			name: 'PhD Student or Candidate',
+			value: UniRole.PhD
+		},
+		{
+			name: 'Faculty or Staff',
+			value: UniRole.FacStaff
+		}
+	];
+
+	const gradSemOptions = [
+		{
+			name: 'Spring',
+			value: GradSem.Spring
+		},
+		{
+			name: 'Winter',
+			value: GradSem.Winter
+		}
+	];
+
+	const majors = [
+		'Computer Science',
+		'Mathematics',
+		'Computer Engineering',
+		'Electrical Engineering',
+		'Business Administration'
+	];
+	const majorOptions: SelectOptionType<string>[] = majors.map((major) => ({
+		name: major,
+		value: major
+	}));
 </script>
 
 <header>
@@ -60,17 +105,60 @@
 		</div>
 
 		<div class="mb-2">
-			<Label for="name" class="mb-2">meow</Label>
-			<Input
-				id="name"
-				name="name"
-				class={inputClass}
-				aria-invalid={$errors.name ? 'true' : undefined}
-				bind:value={$form.name}
-				{...$constraints.name}
+			<Label for="status-select" class="mb-2">Current status</Label>
+			<!-- Background styling taken from <Input>. -->
+			<Select
+				name="uniRole"
+				id="status-select"
+				items={uniRoleOptions}
+				class="bg-gray-50 dark:bg-gray-700"
+				bind:value={$form.uniRole}
+				placeholder=""
 			/>
-			{#if $errors.name}<Helper color="red" class="mt-2 font-medium">{$errors.name}</Helper>{/if}
+			<FormError error={$errors.uniRole} />
 		</div>
+
+		<div class="mb-2">
+			<Label for="major-select" class="mb-2"
+				>{$form.uniRole == UniRole.Undergrad ? 'Major(s)' : 'Department(s)'}</Label
+			>
+			<MyMultiSelect
+				name="majors"
+				id="major-select"
+				items={majorOptions}
+				class="bg-gray-50 dark:bg-gray-700"
+				bind:value={$form.majors}
+			/>
+			<!-- TODO: Look into why this behaves weirdly. -->
+			<FormError error={$errors.majors?._errors} />
+		</div>
+
+		{#if $form.uniRole != UniRole.FacStaff}
+			<div class="mb-2">
+				<!-- TODO: Do this correctly with a fieldset: https://stackoverflow.com/a/9004357/5719930 -->
+				<Label class="mb-2">Anticipated graduation</Label>
+				<div class="flex gap-2">
+					<Select
+						name="gradSem"
+						items={gradSemOptions}
+						class="w-auto bg-gray-50 dark:bg-gray-700"
+						bind:value={$form.gradSem}
+						placeholder=""
+					/>
+					<Input
+						name="gradYear"
+						items={gradSemOptions}
+						placeholder="20XX"
+						class="box-content w-[5ch]"
+						required
+						bind:value={$form.gradYear}
+					/>
+				</div>
+				<!-- TODO: maybe don't just stack these on top of each other -->
+				<FormError error={$errors.gradSem} />
+				<FormError error={$errors.gradYear} />
+			</div>
+		{/if}
 
 		<Button type="submit" class="mb-4 mt-3">Submit</Button>
 		{#if $message?.type == 'error'}

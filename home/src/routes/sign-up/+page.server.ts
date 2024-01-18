@@ -1,13 +1,10 @@
-import { z } from 'zod';
 import { message, superValidate } from 'sveltekit-superforms/server';
 import { redirect as redirectFlash } from 'sveltekit-flash-message/server';
 import { error, redirect } from '@sveltejs/kit';
+import { registrationRegular, userSignupSchema } from '$lib/server/schema.js';
 import { auth } from '$lib/server/lucia';
 import { COOKIE_KEY_DISCORD, MSG_FROM_DISCORD } from '$lib/server/discord.js';
-
-const schema = z.object({
-	name: z.string().optional()
-});
+import { db } from '$lib/server/db.js';
 
 const ERROR_NOT_SIGNED_IN: App.Error = {
 	message: "It doesn't look like you signed in.",
@@ -25,13 +22,19 @@ export const load = async ({ parent }) => {
 		throw redirect(302, '/profile');
 	}
 
-	const form = await superValidate(schema);
+	const form = await superValidate(userSignupSchema);
 	return { form };
 };
 
 export const actions = {
 	default: async ({ request, locals, cookies }) => {
-		const form = await superValidate(request, schema);
+		const session = await locals.authRequest.validate();
+		const user = session?.user;
+		if (!user) {
+			throw error(422, ERROR_NOT_SIGNED_IN);
+		}
+
+		const form = await superValidate(request, userSignupSchema);
 		if (!form.valid) {
 			// This is a status message and not a flash message since we have a
 			// perfectly fine alert element to stick the message in.
@@ -41,13 +44,11 @@ export const actions = {
 			return message(form, { type: 'error', text: 'Invalid form' }, { status: 422 });
 		}
 
-		const session = await locals.authRequest.validate();
-		const user = session?.user;
-		if (!user) {
-			throw error(422, ERROR_NOT_SIGNED_IN);
-		}
-
+		const data = { ...form.data, userId: user.userId };
+		// TODO: allow editing this on the profile
+		await db.insert(registrationRegular).values(data);
 		await auth.updateUserAttributes(user.userId, { is_signed_up: true });
+
 		let text = 'Account successfully created!';
 		if (cookies.get(COOKIE_KEY_DISCORD)) {
 			text += ` ${MSG_FROM_DISCORD}`;
