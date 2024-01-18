@@ -5,7 +5,7 @@
 	import type { FormSizeType, SelectOptionType } from 'flowbite-svelte';
 
 	export let items: SelectOptionType<any>[] = [];
-	export let value: (string | number)[] = [];
+	export let value: (string)[] = [];
 	export let size: FormSizeType = 'md';
 	export let dropdownClass: string = '';
 
